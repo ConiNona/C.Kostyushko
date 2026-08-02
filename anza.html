@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anza by ck. — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #161616;
+      color: #f0f0f0;
+      font-family: 'Inter', system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+    }
+
+    /* subtle grain */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .card {
+      position: relative; z-index: 1;
+      max-width: 480px; width: 100%;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #c4728a; }
+
+    .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: #c4728a;
+      border-radius: 50%;
+      margin: 0 2px;
+      vertical-align: middle;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c4728a;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+    h1 .italic { font-style: italic; color: #c4728a; }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-style: italic;
+      color: #666;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      width: 48px; height: 1px;
+      background: linear-gradient(90deg, transparent, #c4728a55, transparent);
+      margin: 0 auto 2.5rem;
+    }
+
+    .message {
+      font-size: 15px;
+      color: #999;
+      line-height: 1.85;
+      max-width: 380px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border: 1px solid #2a2a2a;
+      border-radius: 100px;
+      color: #555;
+      background: #1c1c1c;
+    }
+
+    /* glow ring behind title */
+    .glow-ring {
+      position: absolute;
+      left: 50%; top: 40%;
+      transform: translate(-50%, -50%);
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #c4728a0a 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-inner { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="glow-ring"></div>
+    <div class="card-inner">
+      <a href="https://c.kostyushko.net" class="back-link">← c.kostyushko.net</a>
+
+      <p class="eyebrow">Coming soon</p>
+      <h1>Anza <span class="italic">by ck.</span></h1>
+      <p class="subtitle">Artistic portfolio</p>
+      <div class="divider"></div>
+      <p class="message">
+        This space is currently being crafted.<br>
+        Check back soon for drawings, photography,<br>
+        and sculpture work by Constanza Kostyushko.
+      </p>
+      <span class="badge">Under construction</span>
+    </div>
+  </div>
+</body>
+</html>
