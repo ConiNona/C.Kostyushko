@@ -528,7 +528,7 @@
       return (
         <p ref={pRef} style={{ fontSize: 14, color: C.textDim, marginTop: 8, transition: 'text-shadow 0.2s ease' }}>
           {lang === 'es' ? 'También la creativa detrás de ' : 'Also the creative behind '}
-          <a href="anza.html" target="_blank" rel="noreferrer"
+          <a href={lang === 'es' ? 'anza-es.html' : 'anza.html'} target="_blank" rel="noreferrer"
             style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accentDark}`, paddingBottom: 1, transition: "color 0.2s, border-color 0.2s" }}
             onMouseEnter={e => { e.currentTarget.style.color = C.accentLight; e.currentTarget.style.borderColor = C.accentLight; }}
             onMouseLeave={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.borderColor = C.accentDark; }}
@@ -653,9 +653,6 @@
               style={{ color: C.textMuted, fontSize: 16, textDecoration: "none", padding: "18px 0", borderBottom: `1px solid ${C.border}`, letterSpacing: "0.06em", display: "block" }}
             >{label}</a>
           ))}
-          <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 20 }}>
-            <LangBtn code="en" /><span style={{ color: C.textDim, fontSize: 11 }}>|</span><LangBtn code="es" />
-          </div>
         </div>,
         document.body
       );
@@ -665,15 +662,20 @@
           <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: isMobile ? "0 1rem" : "0 2rem", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", background: scrolled ? `${C.bg}ee` : "transparent", borderBottom: scrolled ? `1px solid ${C.border}` : "1px solid transparent", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "background 0.3s, border-color 0.3s" }}>
             <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setMobileMenuOpen(false); }} style={{ fontSize: 24, fontWeight: 600, letterSpacing: "0.1em", color: C.text, fontFamily: "'Playfair Display', serif", textDecoration: 'none', cursor: 'pointer' }}>CK<span style={{ display: "inline-block", width: 4, height: 4, background: C.accent, marginLeft: 2, verticalAlign: "baseline" }} /></a>
             {isMobile ? (
-              <button
-                onClick={() => setMobileMenuOpen(o => !o)}
-                style={{ background: "none", border: "none", cursor: "pointer", padding: "8px 4px", display: "flex", flexDirection: "column", gap: 5, alignItems: "flex-end" }}
-                aria-label="Toggle menu"
-              >
-                <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", transform: mobileMenuOpen ? "translateY(7px) rotate(45deg)" : "none" }}/>
-                <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", opacity: mobileMenuOpen ? 0 : 1 }}/>
-                <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", transform: mobileMenuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }}/>
-              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <LangBtn code="en" /><span style={{ color: C.textDim, fontSize: 11 }}>|</span><LangBtn code="es" />
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(o => !o)}
+                  style={{ background: "none", border: "none", cursor: "pointer", padding: "8px 4px", display: "flex", flexDirection: "column", gap: 5, alignItems: "flex-end" }}
+                  aria-label="Toggle menu"
+                >
+                  <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", transform: mobileMenuOpen ? "translateY(7px) rotate(45deg)" : "none" }}/>
+                  <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", opacity: mobileMenuOpen ? 0 : 1 }}/>
+                  <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.textMuted, borderRadius: 2, transition: "all 0.25s ease", transform: mobileMenuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }}/>
+                </button>
+              </div>
             ) : (
               <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
                 {navLink("#about", T.nav.about)}
@@ -873,7 +875,7 @@
                       <p style={{ fontSize: 12, color: C.textMuted, marginBottom: 10 }}>
                         {lang === 'es' ? 'También visita mi marca personal:' : 'Also visit my personal brand:'}
                       </p>
-                      <a href="anza.html" target="_blank" rel="noreferrer"
+                      <a href={lang === 'es' ? 'anza-es.html' : 'anza.html'} target="_blank" rel="noreferrer"
                         style={{ fontSize: 13, color: C.accent, textDecoration: 'none', borderBottom: `1px solid ${C.accentDark}`, paddingBottom: 2, transition: 'color 0.2s, border-color 0.2s' }}
                         onMouseEnter={e => { e.currentTarget.style.color = C.accentLight; e.currentTarget.style.borderColor = C.accentLight; }}
                         onMouseLeave={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.borderColor = C.accentDark; }}
