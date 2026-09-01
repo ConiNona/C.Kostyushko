@@ -53,7 +53,7 @@
     .lang-sep { color: var(--dim); font-size: 11px; }
 
     /* Page */
-    .page-wrap { max-width: 680px; margin: 0 auto; padding: 100px 2rem 6rem; }
+    .page-wrap { max-width: 680px; margin: 0 auto; padding: 100px 2rem 0; min-height: calc(100vh - 56px); display: flex; flex-direction: column; }
     .page-label { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
     .page-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
     .page-sub { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; }
@@ -105,11 +105,11 @@
     .form-global-error { font-size: 13px; color: #e06c75; margin-top: 1rem; min-height: 1rem; }
 
     /* Also links section */
-    .also-links { margin-top: 2.5rem; display: flex; gap: 24px; flex-wrap: wrap; }
+    .also-links { margin-top: 2.5rem; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
     .also-link { font-size: 13px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--dim); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
     .also-link:hover { color: var(--accent); border-color: var(--accent); }
 
-    .page-footer { text-align: center; padding: 3rem 0 0.5rem; }
+    .page-footer { text-align: center; padding: 2.5rem 0 1.5rem; margin-top: auto; }
     .page-footer p { font-size: 11px; color: var(--dim); letter-spacing: 0.05em; }
 
     @media (max-width: 700px) {
@@ -118,7 +118,7 @@
       .nav-links { display: none; }
       .nav-right-group { display: flex; }
       .hamburger { display: flex; }
-      .page-wrap { padding: 80px 1.25rem 4rem; }
+      .page-wrap { padding: 80px 1.25rem 0; }
       .form-wrap { padding: 1.75rem 1.25rem; }
       .also-links { flex-direction: column; gap: 16px; }
     }
