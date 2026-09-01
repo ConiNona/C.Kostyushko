@@ -40,6 +40,8 @@
     .nav-link:hover { color: var(--accent); }
     .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; align-items: flex-end; padding: 8px 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.25s ease; }
+    .nav-right-group { display: none; align-items: center; gap: 6px; }
+    .mobile-lang { display: flex; align-items: center; }
     .mobile-nav-overlay { display: none; position: fixed; top: 78px; left: 0; right: 0; bottom: 0; z-index: 98; background: rgba(22,22,22,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; padding: 0.5rem 1.5rem 2rem; }
     .mobile-nav-overlay.open { display: flex; }
     .mobile-nav-link { color: var(--muted); font-size: 16px; text-decoration: none; padding: 18px 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; display: block; transition: color 0.2s; }
@@ -122,6 +124,7 @@
       .nav-sub { padding: 0 0 0 1rem; }
       .nav-back { border-radius: 5px 0 0 5px; }
       .nav-links { display: none; }
+      .nav-right-group { display: flex; }
       .hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; padding: 96px 1rem 2rem; gap: 1.5rem; }
       .content { padding: 0 1.25rem 4rem; }
@@ -138,9 +141,6 @@
   <nav>
     <div class="nav-main">
       <a href="index.html" class="nav-logo">CK<span class="logo-dot"></span></a>
-      <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-        <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
-      </button>
       <div class="nav-links">
         <a href="index.html#about" class="nav-link" data-en="About" data-es="Sobre mí">About</a>
         <a href="index.html#skills" class="nav-link" data-en="Skills" data-es="Habilidades">Skills</a>
@@ -169,12 +169,22 @@
             </div>
           </div>
         </div>
-        <a href="index.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+        <a href="contact.html" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
         <div style="display:flex;align-items:center;gap:4px;border-left:1px solid var(--border);padding-left:16px;">
           <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
         </div>
+      </div>
+      <div class="nav-right-group">
+        <div class="mobile-lang">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
+        </button>
       </div>
     </div>
     <div class="nav-sub">
@@ -186,12 +196,7 @@
     <a href="index.html#about" class="mobile-nav-link" data-en="About" data-es="Sobre mí">About</a>
     <a href="index.html#skills" class="mobile-nav-link" data-en="Skills" data-es="Habilidades">Skills</a>
     <a href="index.html#projects" class="mobile-nav-link" data-en="Projects" data-es="Proyectos">Projects</a>
-    <a href="index.html#contact" class="mobile-nav-link" data-en="Contact" data-es="Contacto">Contact</a>
-    <div style="display:flex;align-items:center;gap:4px;margin-top:20px;">
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
-    </div>
+    <a href="contact.html" class="mobile-nav-link" data-en="Contact" data-es="Contacto">Contact</a>
   </div>
 
   <section class="hero">
