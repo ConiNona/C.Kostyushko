@@ -46,6 +46,24 @@
       content: ""; position: absolute; inset: 0; background: transparent;
       cursor: default; z-index: 2;
     }
+
+    /* Mobile overrides — narrow the nav wordmark, collapse the multi-column photo grid
+       to a single column, and prevent horizontal scroll from oversized rotated frames. */
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      nav { padding: 0 12px !important; height: 52px !important; }
+      nav > a:first-child { font-size: 15px !important; }
+      nav > span.display { font-size: 15px !important; }
+      nav > div button { font-size: 10px !important; padding: 2px 4px !important; }
+      header { padding: 100px 1rem 2rem !important; }
+      header h1 { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+      header p { font-size: 1rem !important; }
+      section > div > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important; gap: 20px !important;
+      }
+      footer { padding: 2.5rem 1rem 2rem !important; }
+      footer a { font-size: 1.15rem !important; }
+    }
   </style>
 </head>
 <body>
