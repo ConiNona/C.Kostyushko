@@ -68,6 +68,96 @@
       }
     }
 
+    /* ═══════════ MOBILE — comprehensive overrides for ≤ 768px viewports ═══════════
+       React inline styles win over class-selector CSS, so we scope with the outer
+       #root and use !important on the properties the desktop styles set inline. */
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      /* stop each section header from being hidden underneath the fixed nav */
+      section[id], header[id] { scroll-margin-top: 60px; }
+
+      /* NAV — the horizontal nav items don't fit; hide them and keep just the
+         wordmark, the professional-portfolio link, and the language toggle.
+         Users navigate via scrolling on mobile. */
+      nav { padding: 0 12px !important; height: 52px !important; gap: 8px; }
+      nav > a:first-child { font-size: 20px !important; gap: 6px !important; }
+      nav > a:first-child > span:last-child { font-size: 13px !important; }
+      nav > div { flex-wrap: wrap !important; gap: 6px !important; justify-content: flex-end; }
+      nav > div > a.anton { display: none !important; }
+      nav > div > a.handwritten { font-size: 13px !important; margin-left: 0 !important; }
+      nav > div > div:last-child { margin-left: 4px !important; }
+      nav > div > div:last-child button { padding: 2px 5px !important; font-size: 10px !important; }
+
+      /* INTRO — flatten from two columns to one; drop the badge-and-tape column */
+      #intro { padding: 3.5rem 1rem 4rem !important; }
+      #intro > div:last-child { display: block !important; grid-template-columns: 1fr !important; }
+      #intro > div:last-child > div:last-child { display: none !important; }
+
+      /* Section headers can bleed into the previous section on mobile — keep them compact */
+      section [class*="SectionHeader"], section h2 { line-height: 1.05 !important; }
+
+      /* FILM — grid auto-collapses via minmax, but tighten heading padding */
+      #film { padding: 3rem 1rem 4rem !important; }
+      #film > div > div:first-child { padding-right: 0 !important; text-align: left !important; max-width: 100% !important; margin-left: 0 !important; }
+      #film > div > div:first-child > div { text-align: left !important; }
+
+      /* PHOTOGRAPHY (homepage section) — grid → single column; realign header text */
+      #photo { padding: 3rem 1rem 4rem !important; }
+      #photo > div > div:first-child { padding-left: 0 !important; max-width: 100% !important; }
+      #photo > div > div:nth-child(3) { display: block !important; grid-template-columns: 1fr !important; }
+      #photo > div > div:nth-child(3) > div { grid-column: 1 / -1 !important; padding-top: 0 !important; margin-bottom: 1.5rem; }
+
+      /* GRAPHITE — flatten the featured 2-column grids so image sits over text */
+      #graphite { padding: 3rem 1rem 4rem !important; }
+      #graphite > div > div:first-child { padding-left: 0 !important; max-width: 100% !important; }
+      #graphite > div > div:nth-child(2) > div > div,
+      #graphite > div > div:nth-child(3) > div > div {
+        grid-template-columns: 1fr !important; gap: 1.5rem !important;
+      }
+      #graphite > div > div:last-child > div { display: block !important; }
+      #graphite > div > div:last-child > div > div { width: 100% !important; margin-bottom: 1.5rem; }
+
+      /* SCULPTURE — description text top, image below, no overlap */
+      #sculpture { padding: 3rem 1rem 4rem !important; }
+      #sculpture > div > div:first-child { padding-left: 0 !important; max-width: 100% !important; }
+      #sculpture > div > div:nth-child(2) {
+        display: block !important; grid-template-columns: 1fr !important;
+        min-height: 0 !important;
+      }
+      #sculpture > div > div:nth-child(2) > div { padding-left: 0 !important; margin-bottom: 2rem; }
+      #sculpture img { width: 100% !important; max-width: 320px !important; margin: 0 auto !important; }
+
+      /* WATERCOLOR — the portrait background overlaps the gallery on mobile; hide it */
+      #watercolor { padding: 3rem 1rem 4rem !important; }
+      #watercolor > div:first-child { display: none !important; }
+      #watercolor > div:last-child > div:first-child { padding-right: 0 !important; text-align: left !important; margin-left: 0 !important; max-width: 100% !important; }
+      #watercolor > div:last-child > div:last-child { display: block !important; grid-template-columns: 1fr !important; }
+      #watercolor > div:last-child > div:last-child > div { grid-column: 1 / -1 !important; margin-bottom: 1.5rem; display: flex; justify-content: center; }
+
+      /* MARKERS (other techniques) — collapse grid to 1 col */
+      #markers { padding: 3rem 1rem 4rem !important; }
+      #markers > div > div:first-child { padding-left: 0 !important; max-width: 100% !important; }
+      #markers > div > div:last-child { display: block !important; grid-template-columns: 1fr !important; }
+      #markers > div > div:last-child > div { grid-column: 1 / -1 !important; margin-bottom: 1.5rem; }
+
+      /* COLLAGES */
+      #collages { padding: 3rem 1rem 4rem !important; }
+      #collages > div > div:first-child { padding-right: 0 !important; margin-left: 0 !important; text-align: left !important; max-width: 100% !important; }
+      #collages > div > div:last-child { display: block !important; grid-template-columns: 1fr !important; }
+      #collages > div > div:last-child > div { grid-column: 1 / -1 !important; margin-bottom: 1.5rem; }
+
+      /* DANCE section — general tightening */
+      #dance { padding: 3rem 1rem 4rem !important; }
+
+      /* FOOTER — the two language buttons overlap the SVG waves; push down */
+      footer { padding: 3rem 1rem 2rem !important; }
+
+      /* Any 2-column grid inside section wrappers on the homepage — force 1 col fallback */
+      .homepage-grid, section > div > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
     .handwritten { font-family: 'Caveat', cursive; }
     .display     { font-family: 'Playfair Display', serif; }
     .marker      { font-family: 'Permanent Marker', cursive; }
@@ -519,6 +609,18 @@
       return display;
     }
 
+    /* Mobile detection — used by Hero() to swap in a stacked mobile layout, and by a few
+       other components (Nav, PhotoSection) to render tighter alternatives on phones. */
+    function useIsMobile(bp = 768) {
+      const [m, setM] = useState(() => typeof window !== "undefined" && window.innerWidth <= bp);
+      useEffect(() => {
+        const on = () => setM(window.innerWidth <= bp);
+        window.addEventListener("resize", on);
+        return () => window.removeEventListener("resize", on);
+      }, [bp]);
+      return m;
+    }
+
     function Reveal({ children, delay = 0, from = "bottom", style = {} }) {
       const [ref, inView] = useInView();
       const transforms = {
@@ -904,9 +1006,123 @@
     /* ═══════════════════════════════════════════ */
     /* ═══════════════ HERO ═════════════════════ */
     /* ═══════════════════════════════════════════ */
+    /* Mobile hero — a vertically stacked composition that preserves the punk-zine aesthetic
+       without the fixed-pixel collage. The desktop Hero uses pixel coordinates that fall apart
+       under ~500px viewports, so at those widths we swap to this layout instead. */
+    function MobileHero() {
+      const { T, lang } = useContext(LangCtx);
+      const typed = useTypewriter(T.hero.phrases, lang);
+      return (
+        <header id="top" style={{
+          position: "relative", minHeight: "100vh", background: P.magentaDeep,
+          overflow: "hidden", padding: "100px 20px 40px",
+          display: "flex", flexDirection: "column", justifyContent: "space-between",
+        }}>
+          {/* soft color blobs — smaller and less intrusive on mobile */}
+          <div style={{ position: "absolute", top: "-8%", right: "-15%", width: "70%", aspectRatio: "1", background: P.yellow, opacity: 0.9 }}/>
+          <div style={{ position: "absolute", bottom: "-15%", left: "-20%", width: "70%", aspectRatio: "1", background: P.cyan, opacity: 0.85 }}/>
+          <div style={{ position: "absolute", top: "40%", right: "-10%", width: "60%", aspectRatio: "1", background: P.pink, opacity: 0.9 }}/>
+          <Halftone color={P.black} opacity={0.14} size={4} gap={2}/>
+
+          {/* white torn "where I make things" card */}
+          <div style={{
+            position: "relative", zIndex: 3,
+            background: P.cream, padding: "26px 22px 24px",
+            transform: "rotate(-2deg)",
+            filter: "drop-shadow(6px 10px 0 rgba(0,0,0,0.28)) drop-shadow(0 18px 22px rgba(0,0,0,0.4))",
+            marginTop: 8,
+            clipPath: "polygon(0 6%,10% 0,22% 4%,36% 0,52% 5%,68% 0,84% 4%,100% 8%,96% 22%,100% 40%,95% 55%,100% 72%,96% 88%,100% 100%,86% 96%,72% 100%,58% 96%,42% 100%,28% 96%,14% 100%,0 96%,4% 80%,0 64%,5% 48%,0 32%,4% 16%)",
+          }}>
+            <Tape width={70} color={P.yellow} rotate={-14} style={{ position: "absolute", top: -12, left: 30, zIndex: 10 }}/>
+            <Tape width={70} color={P.lime} rotate={12} style={{ position: "absolute", top: -12, right: 30, zIndex: 10 }}/>
+            <h1 className="anton" style={{
+              fontSize: "clamp(2.4rem, 12vw, 3.6rem)",
+              fontWeight: 400, lineHeight: 0.9,
+              color: P.black, letterSpacing: "-0.03em",
+              textTransform: "lowercase", textAlign: "center",
+            }}>
+              <span style={{ display: "block" }}>{T.hero.title1}</span>
+              <span style={{ display: "block", color: P.pinkDeep, fontStyle: "italic", textTransform: "none" }}>{T.hero.title2}</span>
+              <span style={{ display: "block", color: P.tealDeep }}>{T.hero.title3}</span>
+            </h1>
+          </div>
+
+          {/* cyan "by experimenting" card */}
+          <div style={{
+            position: "relative", zIndex: 4,
+            background: P.cyan, padding: "28px 24px",
+            transform: "rotate(2deg)",
+            filter: "drop-shadow(6px 10px 0 rgba(0,0,0,0.28)) drop-shadow(0 18px 26px rgba(0,0,0,0.4))",
+            marginTop: 8,
+            clipPath: "polygon(2% 4%,14% 0,28% 6%,44% 0,60% 5%,76% 0,90% 4%,100% 12%,96% 26%,100% 44%,95% 60%,100% 78%,92% 100%,76% 96%,60% 100%,44% 96%,28% 100%,12% 96%,0 88%,4% 72%,0 56%,5% 40%,0 24%,3% 10%)",
+          }}>
+            <h1 className="anton" style={{
+              fontSize: "clamp(2.4rem, 12vw, 3.6rem)",
+              fontWeight: 400, lineHeight: 0.9,
+              color: P.black, letterSpacing: "-0.02em",
+              textTransform: "lowercase", textAlign: "center",
+            }}>
+              <span style={{ display: "block" }}>{T.hero.title4}</span>
+              <span style={{
+                display: "block", color: P.cream,
+                fontStyle: "italic", fontSize: "1.25em",
+              }}>{T.hero.title5}</span>
+            </h1>
+          </div>
+
+          {/* typewriter sticker */}
+          <div style={{
+            position: "relative", zIndex: 5,
+            transform: "rotate(-1.5deg)",
+            marginTop: 8, alignSelf: "center", maxWidth: "90%",
+          }}>
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              background: P.black, color: P.cream,
+              padding: "10px 20px",
+              fontFamily: "'Permanent Marker', cursive",
+              fontSize: "1.1rem",
+              boxShadow: "5px 5px 0 " + P.yellow,
+              border: "3px solid " + P.yellow,
+              minHeight: 46, minWidth: 220, textAlign: "center",
+            }}>
+              <span>{typed || " "}</span>
+              <span style={{ color: P.pink, animation: "blink 1s step-end infinite" }}>|</span>
+            </div>
+          </div>
+
+          {/* name tag (hand-written) */}
+          <div style={{
+            position: "relative", zIndex: 5, alignSelf: "flex-end",
+            transform: "rotate(3deg)", marginTop: 6, marginRight: 4,
+          }}>
+            <p className="handwritten" style={{
+              fontSize: "1.15rem", color: P.cream, lineHeight: 1.1,
+              letterSpacing: "0.02em",
+              textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+              textAlign: "right",
+            }}>
+              <span style={{ display: "block", opacity: 0.7, fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>by</span>
+              {T.hero.name}<span style={{ color: P.pink }}>.</span>
+            </p>
+          </div>
+
+          {/* scroll cue */}
+          <div style={{
+            position: "relative", zIndex: 5, alignSelf: "center", marginTop: 20,
+            animation: "float 2.5s ease-in-out infinite",
+          }}>
+            <span className="marker" style={{ color: P.cream, fontSize: 16, letterSpacing: "0.1em" }}>↓ keep going ↓</span>
+          </div>
+        </header>
+      );
+    }
+
     function Hero() {
       const { T, lang } = useContext(LangCtx);
       const typed = useTypewriter(T.hero.phrases, lang);
+      const isMobile = useIsMobile();
+      if (isMobile) return <MobileHero />;
 
       return (
         <header id="top" style={{
