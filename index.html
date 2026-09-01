@@ -104,6 +104,12 @@
             },
           ],
         },
+        contactTeaser: {
+          label: "Contact",
+          heading: "Let's talk.",
+          sub: "Have a question or a project in mind? Feel free to reach out.",
+          btn: "Contact me →",
+        },
         footer: {
           heading: "Thank you!",
           sub: "Thanks for taking the time to visit my portfolio.",
@@ -151,6 +157,12 @@
               description: "Edité y creé videos para un canal de YouTube, contribuyendo a la calidad del contenido y al crecimiento de la audiencia más allá de los 6,000 suscriptores.",
             },
           ],
+        },
+        contactTeaser: {
+          label: "Contacto",
+          heading: "Hablemos.",
+          sub: "¿Tienes una pregunta o un proyecto en mente? No dudes en escribirme.",
+          btn: "Contáctame →",
         },
         footer: {
           heading: "¡Gracias!",
@@ -643,10 +655,10 @@
           padding: "0.5rem 1.5rem 2rem",
         }}>
           {[
-            { href: "#about",    label: T.nav.about },
-            { href: "#skills",   label: T.nav.skills },
-            { href: "#projects", label: T.nav.projects },
-            { href: "#contact",  label: T.nav.contact },
+            { href: "#about",       label: T.nav.about },
+            { href: "#skills",      label: T.nav.skills },
+            { href: "#projects",    label: T.nav.projects },
+            { href: "contact.html", label: T.nav.contact },
           ].map(({ href, label }) => (
             <a key={href} href={href}
               onClick={() => setMobileMenuOpen(false)}
@@ -693,7 +705,7 @@
                   </a>
                 </div>
 
-                {navLink("#contact", T.nav.contact)}
+                {navLink("contact.html", T.nav.contact)}
                 <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 8 }}>
                   <LangBtn code="en" /><span style={{ color: C.textDim, fontSize: 11 }}>|</span><LangBtn code="es" />
                 </div>
@@ -783,7 +795,7 @@
                       {[
                         { key: "linkedin", href: "https://www.linkedin.com/in/constanza-kostyushko-a2909b317/", newTab: true },
                         { key: "youtube",  href: "https://www.youtube.com/@ConstanzaKr", newTab: true },
-                        { key: "email",    href: "https://mail.google.com/mail/?view=cm&to=coni.nona@gmail.com", newTab: true },
+                        { key: "email",    href: "mailto:coni.nona@gmail.com", newTab: false },
                       ].map(({ key, href, newTab }) => (
                         <a key={key} href={href} target={newTab ? "_blank" : "_self"} rel="noreferrer" style={{ color: C.textMuted, fontSize: 13, textDecoration: "none", borderBottom: `1px solid ${C.textDim}`, paddingBottom: 2, transition: "color 0.2s, border-color 0.2s" }}
                           onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.borderColor = C.accent; }}
@@ -847,8 +859,34 @@
 
               <Divider />
 
-              {/* ── CONTACT / FOOTER ── */}
+              {/* ── CONTACT TEASER ── */}
               <section id="contact">
+                <Reveal>
+                  <div style={{ textAlign: "center", padding: isMobile ? "1.5rem 0 2rem" : "2rem 0 3rem" }}>
+                    <p style={{ fontSize: 11, letterSpacing: "0.12em", color: C.accent, textTransform: "uppercase", marginBottom: "0.75rem" }}>
+                      {T.contactTeaser.label}
+                    </p>
+                    <h2 style={{ fontSize: isMobile ? "2rem" : "2.8rem", fontWeight: 700, fontFamily: "'Playfair Display', serif", color: C.text, marginBottom: "1rem" }}>
+                      {T.contactTeaser.heading}
+                    </h2>
+                    <p style={{ fontStyle: "italic", color: C.textMuted, fontSize: "1rem", fontFamily: "'Playfair Display', serif", marginBottom: "2rem", maxWidth: 420, margin: "0 auto 2rem" }}>
+                      {T.contactTeaser.sub}
+                    </p>
+                    <a href="contact.html"
+                      style={{ display: "inline-block", padding: "12px 32px", background: C.accentDark, color: C.text, borderRadius: 10, fontSize: 14, fontWeight: 500, textDecoration: "none", border: `1px solid ${C.accentDark}55`, letterSpacing: "0.04em", transition: "background 0.25s, transform 0.2s, box-shadow 0.2s" }}
+                      onMouseEnter={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 24px ${C.accent}44`; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = C.accentDark; e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
+                    >
+                      {T.contactTeaser.btn}
+                    </a>
+                  </div>
+                </Reveal>
+              </section>
+
+              <Divider />
+
+              {/* ── FOOTER ── */}
+              <section id="footer">
                 <Reveal>
                   <div style={{ textAlign: "center", padding: "2rem 0 1rem" }}>
                     <h2 style={{ fontSize: "2.5rem", fontWeight: 700, fontFamily: "'Playfair Display', serif", color: C.accent, marginBottom: "1rem" }}>
@@ -861,7 +899,7 @@
                       {[
                         { key: "linkedin", href: "https://www.linkedin.com/in/constanza-kostyushko-a2909b317/", newTab: true },
                         { key: "youtube",  href: "https://www.youtube.com/@ConstanzaKr", newTab: true },
-                        { key: "email",    href: "https://mail.google.com/mail/?view=cm&to=coni.nona@gmail.com", newTab: true },
+                        { key: "email",    href: "mailto:coni.nona@gmail.com", newTab: false },
                       ].map(({ key, href, newTab }) => (
                         <a key={key} href={href} target={newTab ? "_blank" : "_self"} rel="noreferrer" style={{ color: C.textMuted, fontSize: 13, textDecoration: "none", borderBottom: `1px solid ${C.textDim}`, paddingBottom: 2, transition: "color 0.2s, border-color 0.2s" }}
                           onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.borderColor = C.accent; }}
