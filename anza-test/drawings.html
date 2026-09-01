@@ -43,6 +43,26 @@
     /* anti theft helpers */
     .protected { -webkit-user-select: none; user-select: none; }
     .protected img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+
+    /* Mobile overrides — 1-column gallery, tighter nav, hero title fits on screen */
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      nav { padding: 0 12px !important; height: 52px !important; }
+      nav > a:first-child { font-size: 14px !important; }
+      nav > span.display { font-size: 16px !important; }
+      nav > div button { font-size: 10px !important; padding: 2px 4px !important; }
+      header { padding: 100px 1rem 2rem !important; }
+      header h1 { font-size: clamp(2rem, 10vw, 3rem) !important; text-align: center !important; }
+      header p.serif { font-size: 1rem !important; }
+      section > div > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important; gap: 20px !important;
+      }
+      section > div > div[style*="grid-template-columns"] > div {
+        grid-column: 1 / -1 !important;
+      }
+      footer { padding: 2.5rem 1rem 2rem !important; }
+      footer a { font-size: 1.15rem !important; }
+    }
   </style>
 </head>
 <body>
