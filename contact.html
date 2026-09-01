@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Constanza Kostyushko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --accent: #c4728a; --accent-light: #d9849a; --accent-dark: #a8516a;
+      --bg: #161616; --surface: #1c1c1c; --card: #202020; --border: #2a2a2a;
+      --text: #f0f0f0; --muted: #999; --dim: #555;
+      --glow: rgba(196,114,138,0.25);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+    ::selection { background: #c4728a44; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: #7a3549; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1); }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; display: flex; flex-direction: column; z-index: 100; background: #161616dd; border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-main { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 2rem; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; color: var(--text); text-decoration: none; }
+    .logo-dot { display: inline-block; width: 4px; height: 4px; background: var(--accent); margin-left: 2px; vertical-align: baseline; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; align-items: flex-end; padding: 8px 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.25s ease; }
+    .nav-right-group { display: none; align-items: center; gap: 6px; }
+    .mobile-lang { display: flex; align-items: center; }
+    .mobile-nav-overlay { display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0; z-index: 98; background: rgba(22,22,22,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; padding: 0.5rem 1.5rem 2rem; }
+    .mobile-nav-overlay.open { display: flex; }
+    .mobile-nav-link { color: var(--muted); font-size: 16px; text-decoration: none; padding: 18px 0; border-bottom: 1px solid var(--border); letter-spacing: 0.06em; display: block; transition: color 0.2s; }
+    .mobile-nav-link:hover { color: var(--accent); }
+    .nav-link { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link.active { color: var(--accent); font-weight: 500; }
+    .nav-drop { position: relative; }
+    .nav-drop-menu { position: absolute; top: 100%; right: 0; padding-top: 10px; display: none; z-index: 200; }
+    .nav-drop:hover .nav-drop-menu { display: block; }
+    .nav-drop-inner { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 6px; min-width: 260px; box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3); }
+    .nav-drop-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--muted); font-size: 13px; text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .nav-drop-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; opacity: 0.45; transition: opacity 0.15s; }
+    .lang-btn { background: none; border: none; cursor: pointer; font-size: 12px; font-family: 'Inter', sans-serif; letter-spacing: 0.08em; padding: 2px 4px; color: var(--dim); border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .lang-sep { color: var(--dim); font-size: 11px; }
+
+    /* Page */
+    .page-wrap { max-width: 680px; margin: 0 auto; padding: 100px 2rem 6rem; }
+    .page-label { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .page-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+    .page-sub { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 2.5rem 0; }
+
+    /* Form */
+    .form-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 2.5rem; position: relative; overflow: hidden; }
+    .form-wrap::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-dark)); }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+    .form-group label { font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
+    .form-group input,
+    .form-group textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent-dark);
+      box-shadow: 0 0 0 3px rgba(196,114,138,0.12);
+    }
+    .form-group textarea { min-height: 130px; }
+    .field-error { font-size: 12px; color: #e06c75; margin-top: 2px; min-height: 1rem; }
+    .submit-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; background: var(--accent-dark); color: var(--text);
+      border: 1px solid rgba(196,114,138,0.3); border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,114,138,0.25); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-success {
+      display: none; text-align: center; padding: 2rem;
+      color: var(--accent-light); font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-style: italic;
+    }
+    .form-success .check-icon {
+      display: block; font-size: 2rem; margin-bottom: 1rem;
+    }
+    .form-global-error { font-size: 13px; color: #e06c75; margin-top: 1rem; min-height: 1rem; }
+
+    /* Also links section */
+    .also-links { margin-top: 2.5rem; display: flex; gap: 24px; flex-wrap: wrap; }
+    .also-link { font-size: 13px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--dim); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .also-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    .page-footer { text-align: center; padding: 3rem 0 0.5rem; }
+    .page-footer p { font-size: 11px; color: var(--dim); letter-spacing: 0.05em; }
+
+    @media (max-width: 700px) {
+      body { overflow-x: hidden; }
+      .nav-main { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .nav-right-group { display: flex; }
+      .hamburger { display: flex; }
+      .page-wrap { padding: 80px 1.25rem 4rem; }
+      .form-wrap { padding: 1.75rem 1.25rem; }
+      .also-links { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-main">
+      <a href="index.html" class="nav-logo">CK<span class="logo-dot"></span></a>
+      <div class="nav-links">
+        <a href="index.html#about" class="nav-link" data-en="About" data-es="Sobre mí">About</a>
+        <a href="index.html#skills" class="nav-link" data-en="Skills" data-es="Habilidades">Skills</a>
+        <div class="nav-drop">
+          <a href="index.html#projects" class="nav-link" data-en="Projects" data-es="Proyectos">Projects</a>
+          <div class="nav-drop-menu">
+            <div class="nav-drop-inner">
+              <a href="project-framer.html" class="nav-drop-item"
+                 onmouseover="this.style.color='#9b6dbd';this.style.background='#9b6dbd12';this.querySelector('.nav-drop-dot').style.opacity='1'"
+                 onmouseout="this.style.color='';this.style.background='';this.querySelector('.nav-drop-dot').style.opacity='0.45'">
+                <span class="nav-drop-dot" style="background:#9b6dbd;"></span>
+                <span data-en="Dear Keira: A Digital Birthday Card" data-es="Dear Keira: Una Tarjeta de Cumpleaños Digital">Dear Keira: A Digital Birthday Card</span>
+              </a>
+              <a href="project-cmarine.html" class="nav-drop-item"
+                 onmouseover="this.style.color='#3a8fc7';this.style.background='#3a8fc712';this.querySelector('.nav-drop-dot').style.opacity='1'"
+                 onmouseout="this.style.color='';this.style.background='';this.querySelector('.nav-drop-dot').style.opacity='0.45'">
+                <span class="nav-drop-dot" style="background:#3a8fc7;"></span>
+                <span data-en="CMarine Surveyors Website" data-es="Sitio Web de CMarine Surveyors">CMarine Surveyors Website</span>
+              </a>
+              <a href="project-youtube.html" class="nav-drop-item"
+                 onmouseover="this.style.color='#d94f4f';this.style.background='#d94f4f12';this.querySelector('.nav-drop-dot').style.opacity='1'"
+                 onmouseout="this.style.color='';this.style.background='';this.querySelector('.nav-drop-dot').style.opacity='0.45'">
+                <span class="nav-drop-dot" style="background:#d94f4f;"></span>
+                <span data-en="Video Production &amp; Editing" data-es="Producción y Edición de Video">Video Production &amp; Editing</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link active" data-en="Contact" data-es="Contacto">Contact</a>
+        <div style="display:flex;align-items:center;gap:4px;border-left:1px solid var(--border);padding-left:16px;">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        </div>
+      </div>
+      <div class="nav-right-group">
+        <div class="mobile-lang">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav-overlay" id="mobile-overlay">
+    <a href="index.html#about" class="mobile-nav-link" data-en="About" data-es="Sobre mí">About</a>
+    <a href="index.html#skills" class="mobile-nav-link" data-en="Skills" data-es="Habilidades">Skills</a>
+    <a href="index.html#projects" class="mobile-nav-link" data-en="Projects" data-es="Proyectos">Projects</a>
+    <a href="contact.html" class="mobile-nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+  </div>
+
+  <div class="page-wrap">
+
+    <div class="fade-up">
+      <p class="page-label" data-en="Get in touch" data-es="Escríbeme">Get in touch</p>
+      <h1 class="page-heading" data-en="Let's talk." data-es="Hablemos.">Let's talk.</h1>
+      <p class="page-sub" data-en="Have a question, a project in mind, or just want to say hi? Fill out the form and I'll get back to you as soon as I can." data-es="¿Tienes una pregunta, un proyecto en mente, o simplemente quieres saludar? Completa el formulario y te responderé lo antes posible.">Have a question, a project in mind, or just want to say hi? Fill out the form and I'll get back to you as soon as I can.</p>
+    </div>
+
+    <div class="form-wrap fade-up delay-1">
+
+      <!-- Success message (shown by Formspree after submit) -->
+      <div data-fs-success class="form-success">
+        <span class="check-icon">✦</span>
+        <span data-en="Thanks! I'll get back to you soon." data-es="¡Gracias! Te responderé pronto.">Thanks! I'll get back to you soon.</span>
+      </div>
+
+      <!-- Global error message -->
+      <div data-fs-error class="form-global-error"></div>
+
+      <form id="contact-form">
+
+        <div class="form-group">
+          <label for="name" data-en="Name" data-es="Nombre">Name</label>
+          <input type="text" id="name" name="name" data-fs-field required
+            placeholder="Constanza K." />
+          <span data-fs-error="name" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email" data-en="Email" data-es="Correo electrónico">Email</label>
+          <input type="email" id="email" name="email" data-fs-field required
+            placeholder="hello@example.com" />
+          <span data-fs-error="email" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="message" data-en="Message" data-es="Mensaje">Message</label>
+          <textarea id="message" name="message" data-fs-field required
+            placeholder="..."></textarea>
+          <span data-fs-error="message" class="field-error"></span>
+        </div>
+
+        <button type="submit" class="submit-btn" data-fs-submit-btn data-en="Send message →" data-es="Enviar mensaje →">Send message →</button>
+
+      </form>
+    </div>
+
+    <div class="also-links fade-up delay-2">
+      <a href="https://www.linkedin.com/in/constanza-kostyushko-a2909b317/" target="_blank" rel="noreferrer" class="also-link">LinkedIn</a>
+      <a href="https://www.youtube.com/@ConstanzaKr" target="_blank" rel="noreferrer" class="also-link">YouTube</a>
+      <a href="mailto:coni.nona@gmail.com" class="also-link" data-en="Email directly" data-es="Correo directo">Email directly</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 Constanza Kostyushko</p>
+    </div>
+  </div>
+
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'xppzpoql' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <script>
+    // ── Language (synced with homepage via localStorage) ─
+    (function() {
+      const KEY = 'portfolio-lang';
+      function apply(l) {
+        localStorage.setItem(KEY, l);
+        document.querySelectorAll('[data-en]').forEach(el => {
+          el.innerHTML = (l === 'es' && el.dataset.es) ? el.dataset.es : el.dataset.en;
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          const active = btn.dataset.lang === l;
+          btn.style.fontWeight = active ? '700' : '400';
+          btn.style.color = active ? 'var(--accent)' : 'var(--dim)';
+          btn.style.borderBottom = active ? '1px solid var(--accent)' : '1px solid transparent';
+        });
+      }
+      window.setLang = apply;
+      document.addEventListener('DOMContentLoaded', () => apply(localStorage.getItem(KEY) || 'en'));
+    })();
+
+    // ── Hamburger menu ──────────────────────────────────
+    (function() {
+      const btn = document.getElementById('hamburger-btn');
+      const overlay = document.getElementById('mobile-overlay');
+      const hb1 = document.getElementById('hb1');
+      const hb2 = document.getElementById('hb2');
+      const hb3 = document.getElementById('hb3');
+      let open = false;
+      function toggle() {
+        open = !open;
+        overlay.classList.toggle('open', open);
+        hb1.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+        hb2.style.opacity = open ? '0' : '1';
+        hb3.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+        hb1.style.background = open ? 'var(--accent)' : '';
+        hb3.style.background = open ? 'var(--accent)' : '';
+      }
+      btn.addEventListener('click', toggle);
+      document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => { open = true; toggle(); }));
+    })();
+
+    // ── Scroll reveals ───────────────────────────────────
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => revealObs.observe(el));
+  </script>
+</body>
+</html>
